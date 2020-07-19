@@ -1,0 +1,6 @@
+"0","dat_long <- fullprops %>%"
+"0","  gather(""Stat"", ""Proportion"", -regionNames)"
+"0",""
+"0","ggplot(dat_long, aes(x = regionNames, y = Proportion, fill = Stat)) +"
+"0","  geom_col(position = ""dodge"")"
+"0",""

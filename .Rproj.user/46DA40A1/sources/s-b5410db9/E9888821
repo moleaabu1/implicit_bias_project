@@ -1,0 +1,32 @@
+{
+    "id": "E9888821",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1594861043525.0,
+    "source_on_save": false,
+    "relative_order": 9,
+    "properties": {
+        "expression": "corTable2",
+        "caption": "corTable2",
+        "totalObservations": 5,
+        "displayedObservations": 5,
+        "variables": 2,
+        "cacheKey": "3990334E",
+        "object": "corTable2",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=corTable2&cache_key=3990334E&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 0,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1594861043525,
+    "read_only": false,
+    "read_only_alternatives": []
+}

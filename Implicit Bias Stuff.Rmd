@@ -1,0 +1,238 @@
+---
+title: "Implicit Bias R"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+## R Markdown
+```{r}
+install.packages("devtools")
+library(devtools)
+
+```
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+library(usmap)
+library(ggplot2)
+library(readxl)
+library(readr)
+library(tibble)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+table_69 <- read_excel("new-69.xlsx")
+implicit_bias_data <- read_excel("implicit bias data.xlsx")
+table_69_new <- read.csv("69-csv.csv")
+stateRegion <- read.csv("stateVsRegion.csv")
+View(table_69)
+mapTable69 <- c()
+for (i in 1:50){
+
+   mapTable69 <- c(mapTable69, as.numeric(round((table_69$Rape3[i]/table_69$population[i])*100000, digits = 3)))
+
+}
+
+mapTable69 <- cbind(table_69$State, mapTable69)
+colnames(mapTable69) <- c('state', 'rape')
+mapTable69 <- data.frame(mapTable69)
+mapTable69$rape <- as.numeric((mapTable69$rape))
+(table_69$Rape3[5])
+
+
+plot_usmap(data = mapTable69, values = 'rape', color = "blue") + 
+  scale_colour_continuous(type = getOption("ggplot2.continuous.colour", default = "gradient")) + 
+  theme(legend.position = "right")
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+newList <- c()
+adder <- 0
+count <- 0
+#make a list of racial bias training hours collapsed by state
+for (i in 1:155){
+  
+  if (i > 1 && (implicit_bias_data$State[i] != implicit_bias_data$State[i-1]))
+  {
+    newList <- c(newList, round(adder/count, digits = 3))
+
+adder <- 0
+    count = 0
+  }
+  if (implicit_bias_data$averageHPW[i] != "NA")
+  {
+    adder <- adder + as.numeric(implicit_bias_data$averageHPW[i])
+    count <- count + 1
+  }
+}
+```
+
+
+
+```{r}
+#ALABAMA
+regionNames <- c("South","West","Southwest","Northeast","Midwest")
+regionCounts <- c(0,0,0,0,0)
+regionSum <- c(0,0,0,0,0)
+regionAverage <- c()
+southCount <- 0
+southAverage <- 0
+southSum <- 0
+for(i in 1:5) {
+  for(j in 1:155) {
+  if(implicit_bias_data$Region[j] == regionNames[i]) {
+  if (implicit_bias_data$averageHPW[j] != "NA") {
+  regionCounts[i] =regionCounts[i]+  1;
+  regionSum[i] = regionSum[i] + as.numeric(implicit_bias_data$averageHPW[j])
+  }
+  }
+  }
+  regionAverage[i] <- regionSum[i]/regionCounts[i]
+}
+show(regionAverage)
+regionNames <- as.data.frame(regionNames)
+regionAverage <- as.data.frame(regionAverage)
+combined <- cbind(regionNames,regionAverage)
+ggplot(data = combined, aes(x = regionNames, y = regionAverage,fill = combined$'regionNames')) + geom_bar(stat = 'identity')
+```
+
+
+```{r}
+
+allData <- merge(table_69_new,stateRegion, by = "State" )
+thing <- allData[23]
+thing2 <- allData[35]
+list <- tibble(thing)
+list2 <- tibble(thing2)
+
+drugAbuseInts <- c()
+for (i in 1:50)
+{
+  if (nchar(list[i,]) > 3)
+  {
+    drugAbuseInts <- c(drugAbuseInts, as.numeric(paste(substr(list[i,],1,unname(nchar(list[i,]))-4),substr(list[i,],unname(nchar((list[i,]))-2),unname(nchar(list[i,]))+1), sep = "")))
+  }
+  else
+  {
+    drugAbuseInts <- c(drugAbuseInts, as.numeric(list[i,]))
+  }
+  
+}
+populationInts <- c()
+for (i in 1:50)
+{
+  if ((nchar(list2[i,]) > 3) && (nchar(list2[i,]) < 8))
+  {
+    populationInts <- c(populationInts, as.numeric(paste(substr(list2[i,],1,unname(nchar(list2[i,]))-4),substr(list2[i,],unname(nchar((list2[i,]))-2),unname(nchar(list2[i,]))), sep = "")))
+  }
+  if (nchar(list2[i,]) > 7)
+  {
+    populationInts <- c(populationInts, as.numeric(paste(substr(list2[i,],1,unname(nchar(list2[i,]))-8),
+    substr(list2[i,],unname(nchar(list2[i,]))-6, unname(nchar(list2[i,]))-4),
+    substr(list2[i,],unname(nchar((list2[i,]))-2),unname(nchar(list2[i,]))), sep = "")))                                     
+    
+  }
+  
+}
+show(nchar("1,000,000"))
+show(populationInts)
+regionNames2 <- c("South","West","Southwest","Northeast","Midwest")
+regionCounts2 <- c(0,0,0,0,0,0,0)
+regionSum2 <- c(0,0,0,0,0,0,0)
+regionAverage2 <- c(0,0,0,0,0)
+
+for(i in 1:5) {
+  for(j in 1:50) {
+  if(allData$region[j] == regionNames2[i]) {
+  regionCounts2[i] =regionCounts2[i]+  1;
+  regionSum2[i] = regionSum2[i] + drugAbuseInts[j]/as.numeric(populationInts[j])
+  #show(as.numeric(allData$drugAbuse[j]))
+  }
+  }
+  regionAverage2[i] <- regionSum2[i]/regionCounts2[i]
+}
+show(regionAverage2)
+regionNames2 <- as.data.frame(regionNames2)
+regionAverage2 <- as.data.frame(regionAverage2)
+combined2 <- cbind(regionNames2,regionAverage2)
+ggplot(data = combined2, aes(x = regionNames2, y = regionAverage2,fill = combined$'regionNames')) + geom_bar(stat = 'identity')
+```
+
+```{r}
+Training <- c()
+for(i in 1:5) {
+  show(regionAverage$regionAverage[i])
+  Training <- c(Training,regionAverage$regionAverage[i]/sum(regionAverage))
+}
+regionProps
+DrugViolations <- c()
+for(i in 1:5) {
+  show(regionAverage2$regionAverage2[i])
+  DrugViolations <- c(DrugViolations,regionAverage2$regionAverage2[i]/sum(regionAverage2))
+}
+DrugViolations
+fullprops <- cbind(regionNames,Training,DrugViolations)
+fullprops
+dat_long <- fullprops %>%
+  gather("Stat", "Proportion", -regionNames)
+
+ggplot(dat_long, aes(x = regionNames, y = Proportion, fill = Stat)) +
+  geom_col(position = "dodge")
+
+```
+
+```{r pressure, echo=FALSE}
+newList[is.na(newList)] <- 0
+
+corTable <- cbind(round(table_69[23]/100, digits = 3), newList)
+colnames(corTable) <- c('drugs', 'training')
+
+ggplot(corTable, aes(training, drugs)) + geom_point()
+show(cor(corTable$training, corTable$drugs))
+
+drugAbuseAverageRegion <- c(0.005995966, 0.004134912, 0.004656633, 0.004094765, 0.005450063)
+traingingAverageRegion <- c(5.035714, 2.529412, 3.000000, 3.045455, 3.258065)
+show(cor(drugAbuseAverageRegion, traingingAverageRegion))
+
+
+corTable2 <- as.data.frame(cbind(round(traingingAverageRegion/100, digits = 3), drugAbuseAverageRegion))
+
+colnames(corTable2) <- c('training', 'drugs')
+
+ggplot(corTable2, aes(training, drugs)) + geom_point()
+show(cor(corTable2$training, corTable2$drugs))
+    
+
+```
+
+```{r fun}
+mapTable69_2 <- c()
+for (i in 1:50){
+
+   mapTable69_2 <- c(mapTable69_2, as.numeric(round((table_69$'drug abuse violations'[i]/table_69$population[i])*100000, digits = 3)))
+
+}
+show(mapTable69_2)
+mapTable69_2 <- cbind(table_69$State, mapTable69_2)
+colnames(mapTable69_2) <- c('state', 'drug abuse violations')
+mapTable69_2 <- data.frame(mapTable69_2)
+mapTable69_2$'drug abuse violations' <- as.numeric((mapTable69_2$'drug abuse violations'))
+View(mapTable69_2)
+
+
+plot_usmap(data = mapTable69_2, values = 'drug abuse violations', color = "blue") + 
+  scale_colour_continuous(type = getOption("ggplot2.continuous.colour", default = "gradient")) + 
+  theme(legend.position = "right")
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

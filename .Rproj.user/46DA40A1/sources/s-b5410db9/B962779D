@@ -1,0 +1,32 @@
+{
+    "id": "B962779D",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1594249647989.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "cacheKey": "6F25F208",
+        "caption": "mapTable69",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=mapTable69&cache_key=6F25F208&max_cols=50",
+        "displayedObservations": "50",
+        "environment": "",
+        "expression": "mapTable69",
+        "object": "mapTable69",
+        "preview": "0",
+        "totalObservations": "50",
+        "variables": "2"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 94212707444416,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1594249647989,
+    "read_only": false,
+    "read_only_alternatives": []
+}

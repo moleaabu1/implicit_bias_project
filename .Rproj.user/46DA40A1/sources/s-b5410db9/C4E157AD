@@ -1,0 +1,32 @@
+{
+    "id": "C4E157AD",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1594249369073.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "cacheKey": "72D6FB1D",
+        "caption": "stateRegion",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=stateRegion&cache_key=72D6FB1D&max_cols=50",
+        "displayedObservations": "50",
+        "environment": "",
+        "expression": "stateRegion",
+        "object": "stateRegion",
+        "preview": "0",
+        "totalObservations": "50",
+        "variables": "2"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 94212676916784,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1594249369073,
+    "read_only": false,
+    "read_only_alternatives": []
+}

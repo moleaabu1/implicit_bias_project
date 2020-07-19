@@ -1,0 +1,6 @@
+"0","newList[is.na(newList)] <- 0"
+"0",""
+"0","corTable <- cbind(round(table_69[23]/100, digits = 3), newList)"
+"0","colnames(corTable) <- c('drugs', 'training')"
+"0",""
+"0","ggplot(corTable, aes(training, drugs)) + geom_point()"

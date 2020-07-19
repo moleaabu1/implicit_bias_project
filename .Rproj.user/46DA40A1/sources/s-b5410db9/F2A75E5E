@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594251322348.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F2A75E5E",
+    "lastKnownWriteTime" : 3072,
+    "last_content_update" : 1594251322348,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "8C458296",
+        "caption" : "allData$drugAbuse",
+        "contentUrl" : "grid_resource/gridviewer.html?env=_rs_no_env&obj=&cache_key=8C458296",
+        "displayedObservations" : 50,
+        "environment" : "_rs_no_env",
+        "expression" : "allData$drugAbuse",
+        "object" : "",
+        "preview" : 0,
+        "totalObservations" : 50,
+        "variables" : 1
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
